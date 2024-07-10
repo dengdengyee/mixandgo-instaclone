@@ -1,5 +1,15 @@
-Welcome
-
 <div id="posts">
+  <%= turbo_frame_tag "post-form" do %>
+    <%= form_with model: @post do |f| %>
+      <%= f.text_field :body, 
+          class: "w-full border-gray-400 rounded min-h-24",
+          placeholder: "How was you day?" %>
+
+      <div class="flex flex-row justify-end mt-4">
+        <%= f.submit :send, class: 'text-xl bg-blue-500 text-white py-2 px-4 rounded' %>
+      </div>
+    <% end %>
+  <% end %>
+
   <%= render @posts %>
 </div>
