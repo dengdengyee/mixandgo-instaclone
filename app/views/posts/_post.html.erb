@@ -1,6 +1,6 @@
 <div class="post">
   <div class="post-author">
-    <div class="avatar avatar-<%= rand(1..27) %>"></div>
+    <div class="avatar avatar-<%= (post.user.id % 27) + 1 %>"></div>
     <div><%= post.user.username %></div>
   </div>
   <div class="post-body">
