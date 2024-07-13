@@ -19,6 +19,11 @@ class PostsController < ApplicationController
       return
     end
 
+    if post_params[:body].blank?
+      redirect_to new_post_path, notice: 'Post cannot be empty.'
+      return
+    end
+
     @post = Post.new(post_params)
     @post.user_id = current_user.id
 
