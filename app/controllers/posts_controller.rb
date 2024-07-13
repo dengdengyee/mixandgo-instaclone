@@ -1,7 +1,8 @@
 class PostsController < ApplicationController
   def new
     @post = Post.new
-    return if session[:draft_post].nil?
+
+    return unless session[:draft_post].present?
 
     @post.body = session[:draft_post]
     session.delete(:draft_post)
@@ -9,6 +10,12 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    @comment = Comment.new
+
+    return unless session[:draft_comment].present? && @post.id == session[:draft_comment][:post_id]
+
+    @comment.body = session[:draft_comment][:body]
+    session.delete(:draft_comment)
   end
 
   def create
