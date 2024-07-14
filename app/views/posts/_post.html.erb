@@ -1,4 +1,4 @@
-<div class="post">
+<div class="post mb-4">
   <div class="post-author">
     <div class="avatar avatar-<%= (post.user.id % 27) + 1 %>"></div>
     <div><%= post.user.username %></div>
@@ -7,14 +7,14 @@
     <span><%= post.body %></span>
   </div>
   <div class="post-actions">
-    <%= turbo_frame_tag "post-likes" do %>
-      <%= button_to "", post_likes_path(post), class: "post-actions-like" %>
-    <% end %>
-    <div class="post-actions-comments" id="post-comments-count"><%= pluralize(post.comments.count, "comment") %></div>
+    <div id="<%= dom_id post %>-likes">
+      <%= render partial: 'likes/like', locals: { post: post } %>
+    </div>
+    <div class="post-actions-comments" id="<%= dom_id post %>-comments-count"><%= pluralize(post.comments.count, "comment") %></div>
   </div>
   <div class="post-comments">
-    <div id="comment-form"><%= render partial: "comments/form", locals: { post: post } %></div>
-    <div id="post-comments-list">
+    <div id="<%= dom_id post %>-comment-form"><%= render partial: "comments/form", locals: { post: post } %></div>
+    <div id="<%= dom_id post %>-comments-list">
       <%= render partial: "comments/list", locals: { post: post } %>
     </div>
   </div>

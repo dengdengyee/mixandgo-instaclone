@@ -11,6 +11,7 @@ class PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @comment = Comment.new
+    @liked = current_user.likes.where(post_id: params[:post_id]).exists?
 
     return unless session[:draft_comment].present? && @post.id == session[:draft_comment][:post_id]
 
@@ -45,8 +46,5 @@ class PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(:body)
-  end
-
-  def guard_user
   end
 end
