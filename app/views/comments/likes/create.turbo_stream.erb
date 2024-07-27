@@ -1,0 +1,3 @@
+<%= turbo_stream.update "#{dom_id @post}-#{dom_id @comment}-likes" do %>
+  <%= render partial: "likes/comment_like", locals: { post: @post, comment: @comment }  %>
+<% end %>

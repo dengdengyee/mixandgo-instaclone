@@ -1,0 +1,8 @@
+<div class="comment">
+  <span class="comment-author"><%= comment.user.username %></span>
+  <%= comment.body %>  
+
+  <div id="<%= "#{dom_id post}-#{dom_id comment}-likes" %>">
+    <%= render partial: 'likes/comment_like', locals: { post: post, comment: comment } %>
+  </div>
+</div>

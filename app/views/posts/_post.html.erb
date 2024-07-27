@@ -8,7 +8,7 @@
   </div>
   <div class="post-actions">
     <div id="<%= dom_id post %>-likes">
-      <%= render partial: 'likes/like', locals: { post: post } %>
+      <%= render partial: 'likes/like', locals: { post: post, like_path: post_likes_path(post) } %>
     </div>
     <div class="post-actions-comments" id="<%= dom_id post %>-comments-count"><%= pluralize(post.comments.count, "comment") %></div>
   </div>

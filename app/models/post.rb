@@ -1,8 +1,8 @@
 class Post < ApplicationRecord
   belongs_to :user
-  has_many :comments, dependent: :destroy
+  has_many :comments
 
   def liked_by?(user)
-    user.likes.where(post_id: id).exists?
+    user.likes.where(commentable_id: id).exists?
   end
 end
